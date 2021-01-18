@@ -1,21 +1,27 @@
-import { ApolloServer } from 'apollo-server';
-import 'reflect-metadata';
+const express = require('express');
+import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
-import { Resolve } from './resolver';
+import { Resolvers } from './resolver';
 
-const start = async () => {
+const init = async () => {
+    const app = express();
+
     const server = new ApolloServer({
         playground: true,
         schema: await buildSchema({
             resolvers: [
-                Resolve
+                Resolvers
             ]
         })
     });
 
-    server.listen({ port: process.env.PORT || 4000 })
-        .then(() => console.log('Sever Started'))
-        .catch(e => console.log(e));
+    server.applyMiddleware({ app })
+
+    const PORT = process.env.PORT || 4000;
+
+    app.listen(PORT, () => {
+        console.log(`Server started on http://localhost:${PORT}/${server.graphqlPath}`);
+    })
 };
 
-start();
+init();

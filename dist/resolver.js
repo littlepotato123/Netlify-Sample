@@ -9,11 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Resolve = void 0;
+exports.Resolvers = void 0;
 const type_graphql_1 = require("type-graphql");
-let Resolve = class Resolve {
+let Resolvers = class Resolvers {
     hello() {
-        return "Hi";
+        return 'Hi';
     }
 };
 __decorate([
@@ -21,10 +21,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], Resolve.prototype, "hello", null);
-Resolve = __decorate([
+], Resolvers.prototype, "hello", null);
+Resolvers = __decorate([
     type_graphql_1.Resolver()
-], Resolve);
-exports.Resolve = Resolve;
-;
+], Resolvers);
+exports.Resolvers = Resolvers;
 //# sourceMappingURL=resolver.js.map

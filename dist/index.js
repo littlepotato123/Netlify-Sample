@@ -9,21 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const apollo_server_1 = require("apollo-server");
-require("reflect-metadata");
+const express = require('express');
+const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
 const resolver_1 = require("./resolver");
-const start = () => __awaiter(void 0, void 0, void 0, function* () {
-    const server = new apollo_server_1.ApolloServer({
+const init = () => __awaiter(void 0, void 0, void 0, function* () {
+    const app = express();
+    const server = new apollo_server_express_1.ApolloServer({
+        playground: true,
         schema: yield type_graphql_1.buildSchema({
             resolvers: [
-                resolver_1.Resolve
+                resolver_1.Resolvers
             ]
         })
     });
-    server.listen({ port: process.env.PORT || 4000 })
-        .then(({ url }) => console.log(url))
-        .catch(e => console.log(e));
+    server.applyMiddleware({ app });
+    const PORT = process.env.PORT || 4000;
+    app.listen(PORT, () => {
+        console.log(`Server started on http://localhost:${PORT}/${server.graphqlPath}`);
+    });
 });
-start();
+init();
 //# sourceMappingURL=index.js.map

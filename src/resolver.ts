@@ -1,14 +1,9 @@
-import { Mutation, Query, Resolver } from "type-graphql";
+import { Query, Resolver } from "type-graphql";
 
 @Resolver()
-export class Resolve {
+export class Resolvers {
     @Query(() => String)
     hello() {
-        return "Hi";
+        return 'Hi';
     }
-
-    @Mutation(() => String)
-    create() {
-        return "Mutation Completed"
-    }
-};
+}
