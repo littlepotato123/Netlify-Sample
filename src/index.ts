@@ -5,6 +5,7 @@ import { Resolve } from './resolver';
 
 const start = async () => {
     const server = new ApolloServer({
+        playground: true,
         schema: await buildSchema({
             resolvers: [
                 Resolve
