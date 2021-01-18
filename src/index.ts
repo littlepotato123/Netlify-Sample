@@ -13,7 +13,7 @@ const start = async () => {
     });
 
     server.listen({ port: process.env.PORT || 4000 })
-        .then(({ url }) => console.log(url))
+        .then(() => console.log('Sever Started'))
         .catch(e => console.log(e));
 };
 
