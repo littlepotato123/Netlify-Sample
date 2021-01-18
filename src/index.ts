@@ -1,26 +1,20 @@
-import "reflect-metadata";
-import { createConnection } from "typeorm";
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
-import { buildSchema } from "type-graphql";
-import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
-import { MovieResolver } from "./resolvers/MovieResolver";
+import { ApolloServer } from 'apollo-server';
+import 'reflect-metadata';
+import { buildSchema } from 'type-graphql';
+import { Resolve } from './resolver';
 
-(async () => {
-  const app = express();
+const start = async () => {
+    const server = new ApolloServer({
+        schema: await buildSchema({
+            resolvers: [
+                Resolve
+            ]
+        })
+    });
 
-  await createConnection();
+    server.listen({ port: process.env.PORT || 4000 })
+        .then(({ url }) => console.log(url))
+        .catch(e => console.log(e));
+};
 
-  const apolloServer = new ApolloServer({
-    schema: await buildSchema({
-      resolvers: [HelloWorldResolver, MovieResolver]
-    }),
-    context: ({ req, res }) => ({ req, res })
-  });
-
-  apolloServer.applyMiddleware({ app, cors: false });
-
-  app.listen(4000, () => {
-    console.log("express server started");
-  });
-})();
+start();

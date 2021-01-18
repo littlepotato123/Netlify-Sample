@@ -1,23 +1,33 @@
 {
-  "name": "myapi",
-  "version": "0.0.1",
-  "devDependencies": {
-    "@types/express": "^4.17.2",
-    "@types/node": "^12.12.8",
-    "nodemon": "^1.19.4",
-    "ts-node": "8.5.2",
-    "typescript": "3.7.2"
-  },
-  "dependencies": {
-    "apollo-server-express": "^2.9.9",
-    "express": "^4.17.1",
-    "graphql": "^14.5.8",
-    "reflect-metadata": "^0.1.10",
-    "sqlite3": "^4.1.0",
-    "type-graphql": "^0.17.5",
-    "typeorm": "0.2.20"
-  },
+  "name": "sample_production",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec ts-node src/index.ts"
+    "watch": "tsc -w",
+    "dev": "nodemon dist/index.js",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littlepotato123/Netlify-Sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littlepotato123/Netlify-Sample/issues"
+  },
+  "homepage": "https://github.com/littlepotato123/Netlify-Sample#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.2",
+    "class-validator": "^0.13.1",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.21",
+    "nodemon": "^2.0.7"
   }
 }
